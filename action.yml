@@ -56,16 +56,8 @@ inputs:
     description: "Use Claude AI OAuth authentication instead of API key (for Claude Max subscribers)"
     required: false
     default: "false"
-  claude_access_token:
-    description: "Claude AI OAuth access token (required when use_oauth is true)"
-    required: false
-    default: ""
-  claude_refresh_token:
-    description: "Claude AI OAuth refresh token (required when use_oauth is true)"
-    required: false
-    default: ""
-  claude_expires_at:
-    description: "Claude AI OAuth token expiration timestamp (required when use_oauth is true)"
+  claude_credentials:
+    description: "Full JSON string for ~/.claude/.credentials.json (required when use_oauth is true)"
     required: false
     default: ""
 
@@ -122,9 +114,7 @@ runs:
         use_vertex: ${{ inputs.use_vertex }}
         use_oauth: ${{ inputs.use_oauth }}
         anthropic_api_key: ${{ inputs.anthropic_api_key }}
-        claude_access_token: ${{ inputs.claude_access_token }}
-        claude_refresh_token: ${{ inputs.claude_refresh_token }}
-        claude_expires_at: ${{ inputs.claude_expires_at }}
+        claude_credentials: ${{ inputs.claude_credentials }}
       env:
         # Model configuration
         ANTHROPIC_MODEL: ${{ inputs.model || inputs.anthropic_model }}
